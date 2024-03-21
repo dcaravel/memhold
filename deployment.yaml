@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: memhold
+  labels:
+    app: memhold
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: memhold
+  template:
+    metadata:
+      labels:
+        app: memhold
+    spec:
+      containers:
+      - name: main
+        image: docker.io/dcaravel/memhold:latest
+        args:
+        - "100"
+        resources:
+          limits:
+            memory: "50Mi"
